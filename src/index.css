@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* تطبيق خط Cairo على كل العناصر */
+  html {
+    font-family: 'Cairo', 'Tahoma', 'Arial', sans-serif;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply font-cairo antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* تحسين ظهور الخط في المتصفحات المختلفة */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* تحسين المسافات بين السطور للنص العربي */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-cairo font-bold leading-tight;
+  }
+
+  p {
+    @apply font-cairo leading-relaxed;
+  }
+}
+
+@layer utilities {
+  /* كلاسات مساعدة للخط */
+  .font-cairo-thin {
+    font-family: 'Cairo', sans-serif;
+    font-weight: 300;
+  }
+  
+  .font-cairo-regular {
+    font-family: 'Cairo', sans-serif;
+    font-weight: 400;
+  }
+  
+  .font-cairo-medium {
+    font-family: 'Cairo', sans-serif;
+    font-weight: 500;
+  }
+  
+  .font-cairo-semibold {
+    font-family: 'Cairo', sans-serif;
+    font-weight: 600;
+  }
+  
+  .font-cairo-bold {
+    font-family: 'Cairo', sans-serif;
+    font-weight: 700;
+  }
+  
+  .font-cairo-extrabold {
+    font-family: 'Cairo', sans-serif;
+    font-weight: 800;
+  }
+  
+  .font-cairo-black {
+    font-family: 'Cairo', sans-serif;
+    font-weight: 900;
+  }
+
+  /* أنيميشين helpers */
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+  .animation-delay-500 {
+    animation-delay: 500ms;
+  }
+}
+
+/* تحسين ظهور النص في Safari */
+@media not all and (min-resolution:.001dpcm) { 
+  @supports (-webkit-appearance:none) {
+    body {
+      -webkit-font-smoothing: antialiased;
+    }
+  }
+}
