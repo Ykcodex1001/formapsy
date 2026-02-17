@@ -61,7 +61,6 @@ const RegistrationForm = () => {
     
     const errors = validateForm();
     if (Object.keys(errors).length > 0) {
-      // Show first error
       alert(Object.values(errors)[0]);
       return;
     }
@@ -87,6 +86,16 @@ const RegistrationForm = () => {
       );
       
       setShowToast(true);
+
+      // ✅ Meta Pixel Lead Event (added only)
+      if (window.fbq) {
+        window.fbq("track", "Lead", {
+          content_name: "Workshop Registration",
+          value: formData.type === "Student" ? 3000 : 6000,
+          currency: "DZD"
+        });
+      }
+
       setFormData({
         nom: "",
         email: "",
@@ -95,9 +104,10 @@ const RegistrationForm = () => {
         city: "",
         sessions: "Presential",
       });
+
       setTouchedFields({});
-      
       setTimeout(() => setShowToast(false), 3000);
+
     } catch (err) {
       console.error(err);
       alert("حدث خطأ أثناء الإرسال. الرجاء المحاولة مرة أخرى.");
@@ -106,7 +116,7 @@ const RegistrationForm = () => {
     }
   };
 
-  return (
+ return (
     <div className="relative">
       {/* Progress Bar */}
       <div className="mb-8">
